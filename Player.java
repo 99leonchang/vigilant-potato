@@ -9,10 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Actor
 {
     public boolean isGameStarted = false;
+    private boolean isInvincible;
     public Player(){
         GreenfootImage image = getImage();
         image.scale(image.getWidth() - 280, image.getHeight() - 280);
         setImage(image);
+        isInvincible = false;
         //getWorld().addObject(new Clock(), 100, 100);
     }
 
@@ -25,7 +27,7 @@ public class Player extends Actor
             setLocation(info.getX(), info.getY());
             //move(1);
         }
-        if(isTouching(Enemy.class))
+        if(isTouching(Enemy.class) && !isInvincible)
             Greenfoot.stop();
            
     }    
@@ -33,5 +35,9 @@ public class Player extends Actor
     public void startGame(){
         isGameStarted = true;
         getWorld().addObject(new Clock(), 100, 100);
+    }
+    
+    public void changeInvincibility(boolean status){
+        isInvincible = status;
     }
 }

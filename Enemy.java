@@ -10,11 +10,14 @@ import java.util.Random;
  */
 public class Enemy extends Actor
 {
-    public Enemy(){
+    private int speed = 1;
+    private int startTime;
+    public Enemy(int newSpeed, int timeStamp){
         
         GreenfootImage newImg = new GreenfootImage(10,10);
         
-        //Generates random rainbow colour
+        //--- Generates random rainbow colour
+        
         Random random = new Random();
         float hue = random.nextFloat();
         float saturation = 1.0f; //0.0-1.0, 1.0 = bright af, 0.0 = dull
@@ -24,8 +27,11 @@ public class Enemy extends Actor
         newImg.setColor(newcol);
         newImg.fillOval(0, 0, 10, 10);
         setImage(newImg);
-
         
+        //--- Sets enemy properties
+        if(newSpeed < 3) speed = newSpeed;
+        else speed = 3;
+        startTime = timeStamp;
         
     }
     /**
@@ -34,10 +40,11 @@ public class Enemy extends Actor
      */
     public void act() 
     {
+        if(Clock.getTime() - startTime == 20) getWorld().removeObject(this);
+        if(Clock.getTime() - startTime > 2) move(speed);
         if(Greenfoot.getMouseInfo() != null){
             MouseInfo info = Greenfoot.getMouseInfo();
             turnTowards(info.getX(), info.getY());
         }
-        move(1);
     }    
 }

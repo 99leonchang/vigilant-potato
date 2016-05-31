@@ -19,6 +19,5 @@ public class MyWorld extends World
         addObject(new Player(), 500, 350);
         addObject(new Clock(), 100, 100);
     }
-    
 }
 
