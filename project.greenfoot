@@ -1,0 +1,16 @@
+#Greenfoot properties
+#Mon May 30 14:25:43 CST 2016
+class.Clock.superclass=greenfoot.Actor
+simulation.speed=51
+mainWindow.width=850
+class.MyWorld.superclass=greenfoot.World
+project.charset=UTF-8
+version=2.8.0
+class.Enemy.superclass=greenfoot.Actor
+class.Player.superclass=greenfoot.Actor
+class.PowerUp.superclass=greenfoot.Actor
+world.lastInstantiated=MyWorld
+mainWindow.y=40
+class.Player.image=player.png
+mainWindow.x=40
+mainWindow.height=600
