@@ -39,14 +39,20 @@ public class Enemy extends Actor
     public void act() 
     {
         if(Clock.getTime() - startTime == 20) getWorld().removeObject(this);
-        if(isTouching(DeathItems.class)) getWorld().removeObject(this);
-       
-        if(Clock.getTime() - startTime > 2) move(speed);
-        if(Greenfoot.getMouseInfo() != null){
-            MouseInfo info = Greenfoot.getMouseInfo();
-            turnTowards(info.getX(), info.getY());
+        else{
+            //K
+            if(isTouching(DeathItems.class)) getWorld().removeObject(this);
+            if(getX() == 0 || getX() == 999 || getY() == 0 || getY() == 699) getWorld().removeObject(this);
+            
+            //Set Direction
+            if(Greenfoot.getMouseInfo() != null){
+                MouseInfo info = Greenfoot.getMouseInfo();
+                turnTowards(info.getX(), info.getY());
+            }
+            if(Player.isInvincible) turn(180); //run away if player invincible
+            
+            //Move
+            if(Clock.getTime() - startTime > 2) move(speed);
         }
-        if(Player.isInvincible) turn(180); //run away if player invincible
-        //TODO: Kill when at edge
     }    
 }
