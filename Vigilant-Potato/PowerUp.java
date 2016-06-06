@@ -8,12 +8,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PowerUp extends Actor
 {
-    /**
-     * Act - do whatever the PowerUp wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int id;
+    public PowerUp(int powerid){
+        id = powerid;
+        //Add custom image capabilities
+        /*
+         GreenfootImage image = getImage();
+        image.scale(image.getWidth() - 280, image.getHeight() - 280);
+        setImage(image);
+        */
+    }
+    
     public void act() 
     {
         // Add your action code here.
     }    
+    
+    public int getID(){
+        return id;
+    }
 }

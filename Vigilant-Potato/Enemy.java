@@ -3,16 +3,16 @@ import java.awt.Color;
 import java.util.Random;
 
 /**
- * Write a description of class Enemy here.
+ * Enemy Object
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Leon Chang 
+ * @version 1.0
  */
 public class Enemy extends Actor
 {
     private int speed = 1;
     private int startTime;
-    public Enemy(int newSpeed, int timeStamp){
+    public Enemy(int timeStamp){
         
         GreenfootImage newImg = new GreenfootImage(10,10);
         
@@ -29,8 +29,6 @@ public class Enemy extends Actor
         setImage(newImg);
         
         //--- Sets enemy properties
-        if(newSpeed < 3) speed = newSpeed;
-        else speed = 3;
         startTime = timeStamp;
         
     }
@@ -41,10 +39,14 @@ public class Enemy extends Actor
     public void act() 
     {
         if(Clock.getTime() - startTime == 20) getWorld().removeObject(this);
+        if(isTouching(DeathItems.class)) getWorld().removeObject(this);
+       
         if(Clock.getTime() - startTime > 2) move(speed);
         if(Greenfoot.getMouseInfo() != null){
             MouseInfo info = Greenfoot.getMouseInfo();
             turnTowards(info.getX(), info.getY());
         }
+        if(Player.isInvincible) turn(180); //run away if player invincible
+        //TODO: Kill when at edge
     }    
 }

@@ -9,7 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Actor
 {
     public boolean isGameStarted = false;
-    private boolean isInvincible;
+    public static boolean isInvincible;
+    
+    //PowerUps
+    private int activePowerUp = 0;
+    private boolean spawnFire = false;
+    private int spawnFireTimestamp;
+    private int currentX;
+    private int currentY;
     public Player(){
         GreenfootImage image = getImage();
         image.scale(image.getWidth() - 280, image.getHeight() - 280);
@@ -24,12 +31,27 @@ public class Player extends Actor
         if(Greenfoot.getMouseInfo() != null){
             MouseInfo info = Greenfoot.getMouseInfo();
             //turnTowards(info.getX(), info.getY());
-            setLocation(info.getX(), info.getY());
+            currentX = info.getX();
+            currentY = info.getY();
+            setLocation(currentX, currentY);
             //move(1);
         }
+        
         if(isTouching(Enemy.class) && !isInvincible)
             Greenfoot.stop();
            
+            
+        //List <A> objects = getIntersectingObjects(null);
+        PowerUp a = (PowerUp) getOneIntersectingObject(PowerUp.class);
+                
+        if(a != null){
+            doPowerUp(a.getID());
+        }
+        
+        //PowerUp runthroughs
+        if(activePowerUp > 0){
+            spawnFire(); //check spawnfire
+        }
     }    
     
     public void startGame(){
@@ -39,5 +61,28 @@ public class Player extends Actor
     
     public void changeInvincibility(boolean status){
         isInvincible = status;
+    }
+    
+    private void doPowerUp(int id){
+        switch(id){
+            case 1:
+                spawnFire = true;
+                spawnFireTimestamp = Clock.getTime();
+                activePowerUp++;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    private void spawnFire(){
+        if(spawnFire){
+            getWorld().addObject(new FireTrail(), currentX, currentY);
+            //insert fire spawn
+            if(Clock.getTime() - spawnFireTimestamp > 5){
+                spawnFire = false;
+                activePowerUp--;
+            }
+        }
     }
 }
