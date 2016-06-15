@@ -25,6 +25,7 @@ public class Clock extends Actor
         GreenfootImage textImage = new GreenfootImage(" " + currentTime, 24, new Color(0, 255, 128), new Color(0, 0, 0, 0));
         setImage(textImage);
         spawnEnemy(currentTime/10 + 1);
+        spawnPowerUp(currentTime/10 + 1);
     }
     
     public static int getTime(){
@@ -41,5 +42,13 @@ public class Clock extends Actor
         int randNum = (int) (Math.random()*(120/spawnSpeed));
 
         if(randNum == 0) getWorld().addObject(new Enemy((int)(currentTime)), (int) (Math.random()*1001), (int) (Math.random()*701));
+    }
+    
+    public void spawnPowerUp(int spawnSpeed){
+        //Default speed runs at around 60 ticks per second.
+        //At spawnSpeed 1, we want about 1 every 8 seconds thus 480/spawnSpeed
+        int randNum = (int) (Math.random()*(480/spawnSpeed));
+
+        if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*3)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
     }
 }

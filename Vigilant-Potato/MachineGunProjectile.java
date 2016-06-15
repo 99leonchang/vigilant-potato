@@ -1,20 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class FireBall here.
+ * Write a description of class MachineGunProjectile here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class FireBall extends DeathItems
+public class MachineGunProjectile extends DeathItems
 {
     private int dirX, dirY;
-    public FireBall(int dir){
-        setRotation(dir);
+    public MachineGunProjectile(int currentX, int currentY){
+        turnTowards(currentX, currentY);
     }
     public void act() 
     {
-        move(4);
+        move(6);
         if(isAtEdge()) getWorld().removeObject(this);
     }    
 }

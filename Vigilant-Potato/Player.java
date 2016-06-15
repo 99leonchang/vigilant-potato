@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * Player object
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Leon Chang 
+ * @version 1.0
  */
 public class Player extends Actor
 {
@@ -14,9 +14,15 @@ public class Player extends Actor
     //PowerUps
     private int activePowerUp = 0;
     private boolean spawnFire = false;
+    public static boolean machineGun = false;
     private int spawnFireTimestamp;
+    private int machineGunTimestamp;
+    
     private int currentX;
     private int currentY;
+    
+    public static int fixedX;
+    public static int fixedY;
     public Player(){
         GreenfootImage image = getImage();
         image.scale(image.getWidth() - 280, image.getHeight() - 280);
@@ -33,7 +39,7 @@ public class Player extends Actor
             //turnTowards(info.getX(), info.getY());
             currentX = info.getX();
             currentY = info.getY();
-            setLocation(currentX, currentY);
+            if(!machineGun)setLocation(currentX, currentY);
             //move(1);
         }
         
@@ -46,11 +52,13 @@ public class Player extends Actor
                 
         if(a != null){
             doPowerUp(a.getID());
+            getWorld().removeObject(a);
         }
         
         //PowerUp runthroughs
         if(activePowerUp > 0){
             spawnFire(); //check spawnfire
+            machineGun();
         }
     }    
     
@@ -70,6 +78,19 @@ public class Player extends Actor
                 spawnFireTimestamp = Clock.getTime();
                 activePowerUp++;
                 break;
+            case 2:
+                getWorld().addObject(new FireBall(30), currentX, currentY);
+                getWorld().addObject(new FireBall(150), currentX, currentY);
+                getWorld().addObject(new FireBall(270), currentX, currentY);
+                break;
+            case 3:
+                machineGun = true;
+                isInvincible = true;
+                machineGunTimestamp = Clock.getTime();
+                fixedX = currentX;
+                fixedY = currentY;
+                activePowerUp++;
+                break;
             default:
                 break;
         }
@@ -81,6 +102,18 @@ public class Player extends Actor
             //insert fire spawn
             if(Clock.getTime() - spawnFireTimestamp > 5){
                 spawnFire = false;
+                activePowerUp--;
+            }
+        }
+    }
+    
+    private void machineGun(){
+        if(machineGun){
+            getWorld().addObject(new MachineGunProjectile(currentX, currentY), fixedX, fixedY);
+            //insert fire spawn
+            if(Clock.getTime() - machineGunTimestamp > 5){
+                machineGun = false;
+                isInvincible = false;
                 activePowerUp--;
             }
         }
