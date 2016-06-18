@@ -12,11 +12,26 @@ public class PowerUp extends Actor
     public PowerUp(int powerid){
         id = powerid;
         //Add custom image capabilities
-        /*
-         GreenfootImage image = getImage();
-        image.scale(image.getWidth() - 280, image.getHeight() - 280);
+        
+        String imagename = "";
+        switch(id){
+            case 1:
+                imagename = "powerup_fire.png";
+                break;
+            case 2:
+                //Need new image
+                imagename = "powerup_fire.png";
+                break;
+            case 3:
+                imagename = "powerup_bullet.png";
+                break;
+            default:
+                break;
+         
+        }
+        GreenfootImage image = new GreenfootImage(imagename);
+        image.scale(image.getWidth() - 478, image.getHeight() - 478);
         setImage(image);
-        */
     }
     
     public void act() 

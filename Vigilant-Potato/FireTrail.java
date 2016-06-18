@@ -11,6 +11,9 @@ public class FireTrail extends DeathItems
     private int startTime;
     public FireTrail(){
         startTime = Clock.getMSTime();
+        GreenfootImage image = new GreenfootImage("fire.png");
+        image.scale(image.getWidth() - 270, image.getHeight() - 270);
+        setImage(image);
     }
     /**
      * Act - do whatever the FireTrail wants to do. This method is called whenever

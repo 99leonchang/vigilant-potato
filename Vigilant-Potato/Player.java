@@ -14,6 +14,7 @@ public class Player extends Actor
     //PowerUps
     private int activePowerUp = 0;
     private boolean spawnFire = false;
+    private boolean fireTick;
     public static boolean machineGun = false;
     private int spawnFireTimestamp;
     private int machineGunTimestamp;
@@ -73,16 +74,19 @@ public class Player extends Actor
     
     private void doPowerUp(int id){
         switch(id){
+            //FireTrail
             case 1:
                 spawnFire = true;
                 spawnFireTimestamp = Clock.getTime();
                 activePowerUp++;
                 break;
+            //FireBall
             case 2:
                 getWorld().addObject(new FireBall(30), currentX, currentY);
                 getWorld().addObject(new FireBall(150), currentX, currentY);
                 getWorld().addObject(new FireBall(270), currentX, currentY);
                 break;
+            //MachineGun
             case 3:
                 machineGun = true;
                 isInvincible = true;
@@ -98,8 +102,8 @@ public class Player extends Actor
     
     private void spawnFire(){
         if(spawnFire){
-            getWorld().addObject(new FireTrail(), currentX, currentY);
-            //insert fire spawn
+            if(fireTick)getWorld().addObject(new FireTrail(), currentX, currentY);
+            fireTick = !fireTick;
             if(Clock.getTime() - spawnFireTimestamp > 5){
                 spawnFire = false;
                 activePowerUp--;
@@ -110,6 +114,7 @@ public class Player extends Actor
     private void machineGun(){
         if(machineGun){
             getWorld().addObject(new MachineGunProjectile(currentX, currentY), fixedX, fixedY);
+            
             //insert fire spawn
             if(Clock.getTime() - machineGunTimestamp > 5){
                 machineGun = false;
