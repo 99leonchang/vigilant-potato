@@ -91,6 +91,9 @@ public class Player extends Actor
                 fixedY = currentY;
                 activePowerUp++;
                 break;
+            case 4:
+                getWorld().addObject(new Wiper(), 0, 350);
+                break;
             default:
                 break;
         }

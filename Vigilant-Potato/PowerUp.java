@@ -12,6 +12,7 @@ public class PowerUp extends Actor
     private static GreenfootImage image1 = new GreenfootImage("powerup_fire.png");
     private static GreenfootImage image2 = new GreenfootImage("powerup_fireball.png");
     private static GreenfootImage image3 = new GreenfootImage("powerup_bullet.png");
+    private static GreenfootImage image4 = new GreenfootImage("powerup_wiper.png");
     public PowerUp(int powerid){
         id = powerid;
         //Add custom image capabilities
@@ -27,6 +28,10 @@ public class PowerUp extends Actor
             case 3:
                 //image3.scale(image3.getWidth() - 478, image3.getHeight() - 478);
                 setImage(image3);
+                break;
+            case 4:
+                //image3.scale(image3.getWidth() - 478, image3.getHeight() - 478);
+                setImage(image4);
                 break;
             default:
                 break;
