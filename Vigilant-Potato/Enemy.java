@@ -12,6 +12,7 @@ public class Enemy extends Actor
 {
     private int speed = 1;
     private int startTime;
+    public boolean isHarmful = false;
     public Enemy(int timeStamp){
         /**
         GreenfootImage newImg = new GreenfootImage(10,10);
@@ -57,6 +58,9 @@ public class Enemy extends Actor
                     else turnTowards(info.getX(), info.getY());
                 }
                 if(Player.isInvincible) turn(180); //run away if player invincible
+                
+                //Turn on harmfulness
+                if(Clock.getTime() - startTime == 2) isHarmful = true;
                 
                 //Move
                 if(Clock.getTime() - startTime > 2) move(speed);

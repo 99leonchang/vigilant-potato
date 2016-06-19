@@ -43,7 +43,10 @@ public class Player extends Actor
                 //move(1);
             }
             
-            if(isTouching(Enemy.class) && !isInvincible)((MyWorld)getWorld()).endGame(Clock.getTime());
+            Enemy stuff = (Enemy) getOneIntersectingObject(Enemy.class);
+            if(stuff != null && !isInvincible && stuff.isHarmful) ((MyWorld)getWorld()).endGame(Clock.getTime());
+            
+            //if(isTouching(Enemy.class) && !isInvincible)((MyWorld)getWorld()).endGame(Clock.getTime());
                
                 
             //List <A> objects = getIntersectingObjects(null);
