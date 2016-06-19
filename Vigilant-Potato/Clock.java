@@ -51,6 +51,6 @@ public class Clock extends Actor
         //At spawnSpeed 1, we want about 1 every 8 seconds thus 480/spawnSpeed
         int randNum = (int) (Math.random()*(480/spawnSpeed));
 
-        if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*3)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
+        if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*4)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
     }
 }

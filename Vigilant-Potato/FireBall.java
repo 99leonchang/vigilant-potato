@@ -10,12 +10,12 @@ public class FireBall extends DeathItems
 {
     private int dirX, dirY;
     public FireBall(int dir){
-        setImage("fireball.png");
+        //setImage("fireball.png");
         setRotation(dir);
     }
     public void act() 
     {
-        move(4);
+        move(8);
         if(isAtEdge()) getWorld().removeObject(this);
     }    
 }

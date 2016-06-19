@@ -10,7 +10,11 @@ public class MachineGunProjectile extends DeathItems
 {
     private int dirX, dirY;
     public MachineGunProjectile(int currentX, int currentY){
-        turnTowards(currentX, currentY);
+        double dx = currentX - Player.fixedX;
+        double dy = currentY - Player.fixedY;
+        double angle = Math.atan2(dy,dx)*180.0/Math.PI;
+        setRotation( (int)angle );
+        //turnTowards(currentX, currentY);
     }
     public void act() 
     {

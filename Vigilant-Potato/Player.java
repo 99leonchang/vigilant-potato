@@ -13,7 +13,7 @@ public class Player extends Actor
     //PowerUps
     private int activePowerUp = 0;
     private boolean spawnFire = false;
-    private boolean fireTick;
+    private boolean objTick; //Slow down spawning
     public static boolean machineGun = false;
     private int spawnFireTimestamp;
     private int machineGunTimestamp;
@@ -26,7 +26,7 @@ public class Player extends Actor
     public Player(){
         //GreenfootImage image = getImage();
         //image.scale(image.getWidth() - 280, image.getHeight() - 280);
-        setImage("potato.png");
+        //setImage("potato.png");
         isInvincible = false;
         //getWorld().addObject(new Clock(), 100, 100);
     }
@@ -89,7 +89,9 @@ public class Player extends Actor
                 machineGunTimestamp = Clock.getTime();
                 fixedX = currentX;
                 fixedY = currentY;
-                activePowerUp++;
+                //Check if conflicting with spawnFire
+                if(spawnFire)spawnFire = false;
+                else activePowerUp++;
                 break;
             case 4:
                 getWorld().addObject(new Wiper(), 0, 350);
@@ -101,8 +103,8 @@ public class Player extends Actor
     
     private void spawnFire(){
         if(spawnFire){
-            if(fireTick)getWorld().addObject(new FireTrail(), currentX, currentY);
-            fireTick = !fireTick;
+            if(objTick)getWorld().addObject(new FireTrail(), currentX, currentY);
+            objTick = !objTick;
             if(Clock.getTime() - spawnFireTimestamp > 5){
                 spawnFire = false;
                 activePowerUp--;
@@ -112,8 +114,8 @@ public class Player extends Actor
     
     private void machineGun(){
         if(machineGun){
-            getWorld().addObject(new MachineGunProjectile(currentX, currentY), fixedX, fixedY);
-            
+            if(objTick)getWorld().addObject(new MachineGunProjectile(currentX, currentY), fixedX, fixedY);
+            objTick = !objTick;
             //insert fire spawn
             if(Clock.getTime() - machineGunTimestamp > 5){
                 machineGun = false;
