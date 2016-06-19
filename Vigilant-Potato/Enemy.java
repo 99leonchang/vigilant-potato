@@ -13,7 +13,7 @@ public class Enemy extends Actor
     private int speed = 1;
     private int startTime;
     public Enemy(int timeStamp){
-        
+        /**
         GreenfootImage newImg = new GreenfootImage(10,10);
         
         //--- Generates random rainbow colour
@@ -27,10 +27,10 @@ public class Enemy extends Actor
         newImg.setColor(newcol);
         newImg.fillOval(0, 0, 10, 10);
         setImage(newImg);
+        **/
         
-        
-        //int virusnum = (int)(Math.random()*0)+1;
-        //setImage("virus_"+virusnum+".png");
+        int virusnum = (int)(Math.random()*6)+1;
+        setImage("virus_"+virusnum+".png");
         
         //--- Sets enemy properties
         startTime = timeStamp;

@@ -52,8 +52,8 @@ public class Clock extends Actor
     public void spawnPowerUp(int spawnSpeed){
         //Default speed runs at around 60 ticks per second.
         //At spawnSpeed 1, we want about 1 every 8 seconds thus 480/spawnSpeed
-        //Cap powerup spawnspeed at 3 (2.7s)
-        if(spawnSpeed>3) spawnSpeed=3;
+        //Cap powerup spawnspeed at 3 (4s)
+        if(spawnSpeed>2) spawnSpeed=2;
         int randNum = (int) (Math.random()*(480/spawnSpeed));
 
         if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*5)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
