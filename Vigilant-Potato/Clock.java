@@ -56,6 +56,6 @@ public class Clock extends Actor
         if(spawnSpeed>3) spawnSpeed=3;
         int randNum = (int) (Math.random()*(480/spawnSpeed));
 
-        if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*4)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
+        if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*5)+1), (int) (Math.random()*1001), (int) (Math.random()*701));
     }
 }

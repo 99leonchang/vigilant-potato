@@ -98,6 +98,9 @@ public class Player extends Actor
             case 4:
                 getWorld().addObject(new Wiper(), 0, 350);
                 break;
+            case 5:
+                getWorld().addObject(new Shield(), currentX, currentY);
+                isInvincible = true;
             default:
                 break;
         }

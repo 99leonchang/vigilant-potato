@@ -28,6 +28,10 @@ public class Enemy extends Actor
         newImg.fillOval(0, 0, 10, 10);
         setImage(newImg);
         
+        
+        //int virusnum = (int)(Math.random()*0)+1;
+        //setImage("virus_"+virusnum+".png");
+        
         //--- Sets enemy properties
         startTime = timeStamp;
         
