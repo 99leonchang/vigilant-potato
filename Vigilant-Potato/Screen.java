@@ -33,6 +33,7 @@ public class Screen extends Actor
                 break;
             //Tutorial
             case 3:
+                setImage("tutorial.png");
                 break;
             //End
             case 4:
@@ -55,11 +56,13 @@ public class Screen extends Actor
                 case 1:
                     if(clickX>=357 && clickX<=642 && clickY>=300 && clickY<=400)((MyWorld)getWorld()).startGame(this);
                     else if(clickX>=880 && clickY>=650) switchScreen(2, this);
+                    else if(clickX<=120 && clickY>=645) switchScreen(3, this);
                     break;
                 case 2:
                     if(clickX>=900 && clickY>=640) switchScreen(1, this);
                     break;
                 case 3:
+                    if(clickX>=900 && clickY>=640) switchScreen(1, this);
                     break;
                 case 4:
                     if(clickX>=355 && clickX<=645 && clickY>=490 && clickY<=590) switchScreen(1, this);
