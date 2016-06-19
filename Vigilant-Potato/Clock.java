@@ -20,12 +20,14 @@ public class Clock extends Actor
      */
     public void act() 
     {
-        accuTime = ((int)System.currentTimeMillis() - (int)start);
-        currentTime = accuTime/1000;
-        GreenfootImage textImage = new GreenfootImage(" " + currentTime, 24, new Color(0, 255, 128), new Color(0, 0, 0, 0));
-        setImage(textImage);
-        spawnEnemy(currentTime/10 + 1);
-        spawnPowerUp(currentTime/10 + 1);
+        if(((MyWorld)getWorld()).isGameStarted){
+            accuTime = ((int)System.currentTimeMillis() - (int)start);
+            currentTime = accuTime/1000;
+            GreenfootImage textImage = new GreenfootImage(" " + currentTime, 24, new Color(0, 0, 0), new Color(0, 0, 0, 0));
+            setImage(textImage);
+            spawnEnemy(currentTime/10 + 1);
+            spawnPowerUp(currentTime/10 + 1);
+        }
     }
     
     public static int getTime(){

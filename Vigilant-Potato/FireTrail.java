@@ -9,11 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class FireTrail extends DeathItems
 {
     private int startTime;
+    //private static GreenfootImage image = new GreenfootImage("fire.png");
     public FireTrail(){
         startTime = Clock.getMSTime();
-        GreenfootImage image = new GreenfootImage("fire.png");
-        image.scale(image.getWidth() - 270, image.getHeight() - 270);
-        setImage(image);
+        //image.scale(image.getWidth() - 270, image.getHeight() - 270);
+        setImage("fire.png");
     }
     /**
      * Act - do whatever the FireTrail wants to do. This method is called whenever

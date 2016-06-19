@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    public boolean isGameStarted = false;
     public static boolean isInvincible;
     
     //PowerUps
@@ -25,48 +24,45 @@ public class Player extends Actor
     public static int fixedX;
     public static int fixedY;
     public Player(){
-        GreenfootImage image = getImage();
-        image.scale(image.getWidth() - 280, image.getHeight() - 280);
-        setImage(image);
+        //GreenfootImage image = getImage();
+        //image.scale(image.getWidth() - 280, image.getHeight() - 280);
+        setImage("potato.png");
         isInvincible = false;
         //getWorld().addObject(new Clock(), 100, 100);
     }
 
     public void act() 
     {
-        
-        if(Greenfoot.getMouseInfo() != null){
-            MouseInfo info = Greenfoot.getMouseInfo();
-            //turnTowards(info.getX(), info.getY());
-            currentX = info.getX();
-            currentY = info.getY();
-            if(!machineGun)setLocation(currentX, currentY);
-            //move(1);
-        }
-        
-        if(isTouching(Enemy.class) && !isInvincible)
-            Greenfoot.stop();
-           
+        if(((MyWorld)getWorld()).isGameStarted){
+            if(Greenfoot.getMouseInfo() != null){
+                MouseInfo info = Greenfoot.getMouseInfo();
+                //turnTowards(info.getX(), info.getY());
+                currentX = info.getX();
+                currentY = info.getY();
+                if(!machineGun)setLocation(currentX, currentY);
+                //move(1);
+            }
             
-        //List <A> objects = getIntersectingObjects(null);
-        PowerUp a = (PowerUp) getOneIntersectingObject(PowerUp.class);
+            if(isTouching(Enemy.class) && !isInvincible)
+                Greenfoot.stop();
+               
                 
-        if(a != null){
-            doPowerUp(a.getID());
-            getWorld().removeObject(a);
-        }
+            //List <A> objects = getIntersectingObjects(null);
+            PowerUp a = (PowerUp) getOneIntersectingObject(PowerUp.class);
+                    
+            if(a != null){
+                doPowerUp(a.getID());
+                getWorld().removeObject(a);
+            }
+            
+            //PowerUp runthroughs
+            if(activePowerUp > 0){
+                spawnFire(); //check spawnfire
+                machineGun();
+            }
         
-        //PowerUp runthroughs
-        if(activePowerUp > 0){
-            spawnFire(); //check spawnfire
-            machineGun();
         }
     }    
-    
-    public void startGame(){
-        isGameStarted = true;
-        getWorld().addObject(new Clock(), 100, 100);
-    }
     
     public void changeInvincibility(boolean status){
         isInvincible = status;

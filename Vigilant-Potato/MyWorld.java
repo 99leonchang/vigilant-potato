@@ -8,16 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    public boolean isGameStarted = false;
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
+    
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 700, 1); 
-        addObject(new Player(), 500, 350);
-        addObject(new Clock(), 100, 100);
+        //addObject(new Player(), 500, 350);
+        //addObject(new Clock(), 100, 100);
+        addObject(new Screen(1), 500,350);
     }
 }
 
