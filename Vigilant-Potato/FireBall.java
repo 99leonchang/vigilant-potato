@@ -15,7 +15,8 @@ public class FireBall extends DeathItems
     }
     public void act() 
     {
+        //Self Destruct
+        if(!((MyWorld)getWorld()).isGameStarted || isAtEdge()) getWorld().removeObject(this);
         move(8);
-        if(isAtEdge()) getWorld().removeObject(this);
     }    
 }

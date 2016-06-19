@@ -1,29 +1,42 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
- * Write a description of class Screen here.
+ * Manages Game screens (startscreens etc)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Leon Chang
+ * @version 1.0
  */
 public class Screen extends Actor
 {
-    // instance variables - replace the example below with your own
     private int screenID;
     //private static GreenfootImage start = new GreenfootImage("startscreen.png");
     /**
      * Constructor for objects of class Screen
      */
+    public Screen(){
+        
+    }
     public Screen(int id)
     {
+        /**
+         * 
+         */
         screenID = id;
         switch(id){
+            //Start
             case 1:
                 setImage("startscreen.png");
                 break;
+            //Credits
             case 2:
+                setImage("credits.png");
                 break;
+            //Tutorial
             case 3:
+                break;
+            //End
+            case 4:
+                setImage("gameoverscreen.png");
                 break;
             default:
                 break;
@@ -40,21 +53,24 @@ public class Screen extends Actor
             }
             switch(screenID){
                 case 1:
-                    if(clickX>=357 && clickX<=642 && clickY>=300 && clickY<=400)
-                        startGame();
+                    if(clickX>=357 && clickX<=642 && clickY>=300 && clickY<=400)((MyWorld)getWorld()).startGame(this);
+                    else if(clickX>=880 && clickY>=650) switchScreen(2, this);
                     break;
                 case 2:
+                    if(clickX>=900 && clickY>=640) switchScreen(1, this);
                     break;
-                default:
+                case 3:
+                    break;
+                case 4:
+                    if(clickX>=355 && clickX<=645 && clickY>=490 && clickY<=590) switchScreen(1, this);
+                    
                     break;
             }
         }
     }
     
-    public void startGame(){
-        getWorld().addObject(new Player(), 500, 350);
-        getWorld().addObject(new Clock(), 100, 100);
-        ((MyWorld)getWorld()).isGameStarted = true;
-        getWorld().removeObject(this);
+    public void switchScreen(int screenID, Actor a){
+        getWorld().addObject(new Screen(screenID), 500,350);
+        getWorld().removeObject(a);
     }
 }

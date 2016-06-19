@@ -21,7 +21,7 @@ public class FireTrail extends DeathItems
      */
     public void act() 
     {
-        if(Clock.getMSTime() - startTime > 5000) getWorld().removeObject(this);
+        if(Clock.getMSTime() - startTime > 5000 || !((MyWorld)getWorld()).isGameStarted) getWorld().removeObject(this);
         //Destructs after 8 seconds
     }    
 }

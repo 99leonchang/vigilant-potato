@@ -15,6 +15,7 @@ public class Wiper extends DeathItems
     public void act() 
     {
         move(10);
-        if(isAtEdge()) getWorld().removeObject(this);
+        if(isAtEdge() || !((MyWorld)getWorld()).isGameStarted) getWorld().removeObject(this);
+        //Self Destruct
     }    
 }

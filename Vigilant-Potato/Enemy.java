@@ -57,6 +57,9 @@ public class Enemy extends Actor
                 //Move
                 if(Clock.getTime() - startTime > 2) move(speed);
             }
+        }else{
+            //Self Destruct
+            getWorld().removeObject(this);
         }
     }    
 }

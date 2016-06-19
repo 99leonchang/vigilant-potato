@@ -43,8 +43,7 @@ public class Player extends Actor
                 //move(1);
             }
             
-            if(isTouching(Enemy.class) && !isInvincible)
-                Greenfoot.stop();
+            if(isTouching(Enemy.class) && !isInvincible)((MyWorld)getWorld()).endGame(Clock.getTime());
                
                 
             //List <A> objects = getIntersectingObjects(null);
@@ -61,6 +60,9 @@ public class Player extends Actor
                 machineGun();
             }
         
+        }else{
+            //Self Destruct
+            getWorld().removeObject(this);
         }
     }    
     

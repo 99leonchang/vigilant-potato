@@ -27,6 +27,9 @@ public class Clock extends Actor
             setImage(textImage);
             spawnEnemy(currentTime/10 + 1);
             spawnPowerUp(currentTime/10 + 1);
+        }else{
+            //Self Destruct
+            getWorld().removeObject(this);
         }
     }
     
@@ -49,6 +52,8 @@ public class Clock extends Actor
     public void spawnPowerUp(int spawnSpeed){
         //Default speed runs at around 60 ticks per second.
         //At spawnSpeed 1, we want about 1 every 8 seconds thus 480/spawnSpeed
+        //Cap powerup spawnspeed at 3 (2.7s)
+        if(spawnSpeed>3) spawnSpeed=3;
         int randNum = (int) (Math.random()*(480/spawnSpeed));
 
         if(randNum == 0) getWorld().addObject(new PowerUp((int) (Math.random()*4)+1), (int) (Math.random()*1001), (int) (Math.random()*701));

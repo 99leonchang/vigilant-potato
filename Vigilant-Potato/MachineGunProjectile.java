@@ -19,6 +19,7 @@ public class MachineGunProjectile extends DeathItems
     public void act() 
     {
         move(6);
-        if(isAtEdge()) getWorld().removeObject(this);
+        if(isAtEdge() || !((MyWorld)getWorld()).isGameStarted) getWorld().removeObject(this);
+        //Self Destruct
     }    
 }

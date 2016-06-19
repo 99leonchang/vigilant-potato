@@ -40,7 +40,8 @@ public class PowerUp extends Actor
     
     public void act() 
     {
-        // Add your action code here.
+        //Self Destruct
+        if(!((MyWorld)getWorld()).isGameStarted) getWorld().removeObject(this);
     }    
     
     public int getID(){
